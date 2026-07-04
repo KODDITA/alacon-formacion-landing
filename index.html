@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alacon Formación — Prueba tu suerte</title>
+  <meta name="description" content="Alacon Formación premia tu fidelidad. Rasca y descubre cuánto te llevas para tu próxima formación.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Alacon Formación">
+  <meta property="og:title" content="Alacon Formación — Queremos premiar tu fidelidad">
+  <meta property="og:description" content="Rasca el logo y descubre cuánto te llevas para tu próxima formación.">
+  <meta property="og:image" content="https://oferta.alaconformacion.es/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://oferta.alaconformacion.es/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alacon Formación — Queremos premiar tu fidelidad">
+  <meta name="twitter:description" content="Rasca el logo y descubre cuánto te llevas para tu próxima formación.">
+  <meta name="twitter:image" content="https://oferta.alaconformacion.es/img/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="introOverlay" class="af-hero" aria-hidden="true">
+  <div class="af-hero__topglow"></div>
+  <div class="af-hero__wrap">
+    <div class="af-logo-box">
+      <div class="af-glow"></div>
+      <img class="af-logo-img" src="img/logo.png" alt="">
+      <svg class="af-fx" viewBox="0 0 1064 772">
+        <path class="af-ink" d="M150,348 C260,350 380,332 470,318 C600,297 720,262 820,244 C900,230 955,228 1008,296" fill="none" stroke="#e0a83a" stroke-width="6" stroke-linecap="round" stroke-dasharray="1000"></path>
+      </svg>
+      <div class="af-pen"></div>
+    </div>
+    <div class="af-copy">
+      <div class="af-l1">Queremos premiar</div>
+      <div class="af-l2">tu fidelidad</div>
+      <div class="af-rule"></div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<nav class="mini-nav" id="miniNav">
+  <img src="img/logo.png" alt="Alacon Formación">
+  <a class="btn" href="#contacto">Reclamar oferta</a>
+</nav>
+
+<header class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="brandbar">
+        <img src="img/logo.png" alt="Alacon Formación">
+      </div>
+      <p class="eyebrow">Oferta exclusiva para alumnos</p>
+      <h1>Queremos premiar<br><em>tu fidelidad</em></h1>
+      <p class="lead">Pasa el cursor sobre el logo y descubre cuánto te llevas para tu próxima formación con nosotros.</p>
+      <div class="hero-meta">
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"></path></svg>Válido en toda la oferta formativa</span>
+        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"></path></svg>Sin compromiso de compra</span>
+      </div>
+    </div>
+
+    <div class="card-scratch">
+      <p class="kicker">Prueba tu suerte</p>
+      <h2>Rasca y descubre tu premio</h2>
+      <p class="sub">Mueve el dedo o el ratón sobre el logo</p>
+
+      <div class="scratch-holder">
+        <div id="prizeLayer">
+          <p class="who">Has ganado</p>
+          <p class="amt" id="prizeAmount">500 €</p>
+          <p class="who">para tu próxima formación</p>
+          <p class="fine" id="prizeFine">Válido para formaciones de más de 1.000 €</p>
+        </div>
+        <canvas id="scratchCanvas" width="240" height="240"></canvas>
+      </div>
+      <p class="scratch-hint">No hace falta hacer clic, solo pasa el cursor</p>
+
+      <div>
+        <a class="btn" href="#contacto">Quiero mi formación</a>
+      </div>
+    </div>
+  </div>
+
+  <svg class="hero-wave" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 22c80 14 160-18 240-10s150 26 230 14 160-24 240-12 150 22 230 10 40-10 60-6V40H0Z"></path>
+  </svg>
+</header>
+
+<section class="steps reveal">
+  <div class="wrap">
+    <p class="eyebrow">Cómo funciona</p>
+    <h2>De rascar el logo a empezar tu curso</h2>
+
+    <div class="steps-row reveal-stagger">
+      <div class="step item">
+        <span class="step-num">01</span>
+        <h3>Rasca el logo</h3>
+        <p>Pasa el cursor o el dedo sobre el logo y descubre al instante cuánto te llevas.</p>
+      </div>
+      <div class="step item">
+        <span class="step-num">02</span>
+        <h3>Habla con nosotros</h3>
+        <p>Escríbenos por WhatsApp o email y te confirmamos tu premio y las formaciones a las que aplica.</p>
+      </div>
+      <div class="step item">
+        <span class="step-num">03</span>
+        <h3>Empieza tu formación</h3>
+        <p>Descontamos el importe ganado del curso que elijas y te matriculamos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats reveal-stagger reveal">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="item"><div class="num" data-target="20" data-prefix="+" data-suffix="k">+0k</div><div class="lbl">Alumnos matriculados</div></div>
+      <div class="item"><div class="num" data-target="1000" data-prefix="+" data-suffix="">+0</div><div class="lbl">Empresas colaboradoras</div></div>
+      <div class="item"><div class="num" data-target="92" data-prefix="" data-suffix="%">0%</div><div class="lbl">Tasa de empleo</div></div>
+      <div class="item"><div class="num" data-target="99" data-prefix="" data-suffix="%">0%</div><div class="lbl">Alumnos satisfechos</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about reveal">
+  <div class="wrap">
+    <p class="eyebrow">¿Por qué elegirnos?</p>
+    <h2>Tu futuro empieza ahora</h2>
+    <p>Nos centramos en poner todos los recursos necesarios al alcance del alumno, para que pueda cumplir sus objetivos y avanzar profesionalmente al siguiente nivel.</p>
+
+    <div class="why-grid reveal-stagger">
+      <div class="item">
+        <h3>Cursos actualizados</h3>
+        <p>Las formaciones más demandadas con el contenido más reciente que exigen las empresas.</p>
+      </div>
+      <div class="item">
+        <h3>Formación práctica</h3>
+        <p>Haz prácticas reales en empresas del sector y cerca de tu zona.</p>
+      </div>
+      <div class="item">
+        <h3>Tutores expertos</h3>
+        <p>Te acompañarán tutores especializados para ayudarte con todo lo que necesites durante el curso.</p>
+      </div>
+      <div class="item">
+        <h3>Certificaciones</h3>
+        <p>Obtén tu certificación y da el siguiente paso en tu carrera laboral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cats reveal">
+  <div class="wrap">
+    <p class="eyebrow">Nuestras áreas</p>
+    <h2>Formación en los sectores más demandados</h2>
+    <div class="chip-row">
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-administracion-y-gestion-de-empresas/" target="_blank" rel="noopener">Administración</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-salud/" target="_blank" rel="noopener">Salud</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-masajes-y-terapias-manuales/" target="_blank" rel="noopener">Masajes y terapias</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-imagen-personal/" target="_blank" rel="noopener">Imagen personal</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-educacion/" target="_blank" rel="noopener">Educación</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-deporte/" target="_blank" rel="noopener">Deportes</a>
+      <a class="chip" href="https://alaconformacion.es/cursos-a-distancia-veterinaria/" target="_blank" rel="noopener">Veterinaria</a>
+      <a class="chip" href="https://alaconformacion.es/" target="_blank" rel="noopener">Ver todos los cursos</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial reveal">
+  <div class="wrap">
+    <svg class="quote-mark" viewBox="0 0 32 24" width="40" height="30" aria-hidden="true">
+      <path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 4.8C9.6 6 7.2 8.8 7.2 12.8H14.4V24H0ZM17.6 24V14.4C17.6 6.4 22.4 1.2 30.4 0L32 4.8c-4.8 1.2-7.2 4-7.2 8H32V24H17.6Z"></path>
+    </svg>
+    <p class="quote-text">Gracias a la rapidez y cercanía del equipo pude formarme como quiromasajista sin complicaciones, con todo el proceso bien explicado de principio a fin.</p>
+    <p class="quote-author">Sol J. — alumna de Quiromasaje</p>
+  </div>
+</section>
+
+<section class="courses reveal">
+  <div class="wrap">
+    <p class="eyebrow">Cursos destacados</p>
+    <h2>Formaciones más solicitadas ahora</h2>
+
+    <div class="course-grid reveal-stagger">
+      <a class="course-card item" href="https://alaconformacion.es/producto/hotr0110-direccion-y-produccion-en-cocina/" target="_blank" rel="noopener">
+        <span class="course-tag">Certificado de profesionalidad</span>
+        <h3>HOTR0110 Dirección y Producción en Cocina</h3>
+        <p class="course-price">2.096,00 € – 3.016,00 €</p>
+        <span class="course-link">Ver curso <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="course-card item" href="https://alaconformacion.es/producto/pruebas-de-acceso-a-ciclos-formativos-de-grado-medio-2/" target="_blank" rel="noopener">
+        <span class="course-tag">Pruebas de acceso</span>
+        <h3>Pruebas de Acceso a Ciclos Formativos de Grado Medio</h3>
+        <p class="course-price">1.998,00 €</p>
+        <span class="course-link">Ver curso <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="course-card item" href="https://alaconformacion.es/producto/hotr0208-operaciones-basicas-de-restaurante-y-bar/" target="_blank" rel="noopener">
+        <span class="course-tag">Certificado de profesionalidad</span>
+        <h3>HOTR0208 Operaciones Básicas de Restaurante y Bar</h3>
+        <p class="course-price">1.598,00 € – 1.998,00 €</p>
+        <span class="course-link">Ver curso <span aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="trust reveal">
+  <div class="wrap">
+    <div class="trust-row">
+      <div class="trust-badge">
+        <img src="img/logo-sepe.png" alt="Servicio Público de Empleo Estatal — SEPE">
+        <p class="trust-code">Registro estatal de entidades de formación · Código 8000002082</p>
+      </div>
+      <div class="trust-badge">
+        <img src="img/logo-fundae.png" alt="Fundación Estatal para la Formación en el Empleo — FUNDAE">
+        <p class="trust-code">Entidad registrada en FUNDAE · Código 24871 · Cursos bonificables</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <h3>Reclama tu oferta</h3>
+    <p>Escríbenos y te contamos cómo aplicar tu premio a la formación que elijas.</p>
+    <div class="contact-row">
+      <a class="btn" href="mailto:info@alaconformacion.com">Escribir email</a>
+      <a class="btn ghost" href="https://wa.me/34611126264" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="foot-grid">
+      <div>
+        <div class="label">Contacto</div>
+        <p>+34 611 12 62 64</p>
+        <p>+34 952 07 39 33</p>
+        <p>info@alaconformacion.com</p>
+        <p style="margin-top:10px;">Lunes a jueves: 09:00–15:00 y 15:30–17:30</p>
+        <p>Viernes: 09:00–14:00</p>
+      </div>
+      <div>
+        <div class="label">Dirección</div>
+        <p>Avenida Estrella del Mar, 18, 1ª Planta, Local 15</p>
+        <p>29630 Benalmádena, Málaga, España</p>
+      </div>
+    </div>
+
+    <div class="social-row">
+      <a href="https://www.instagram.com/alaconformacion/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100073284343943" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H8v4h2v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1z"></path>
+        </svg>
+      </a>
+      <a href="http://www.linkedin.com/in/alacon-formación-tu-futuro-empieza-ahora-028664234" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <rect x="3" y="9" width="3.6" height="12"></rect>
+          <circle cx="4.8" cy="4.7" r="2.1"></circle>
+          <path d="M10 9h3.6v1.9h.05c.5-.95 1.7-1.95 3.5-1.95 3.75 0 4.45 2.5 4.45 5.7V21h-3.7v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3V21H10z"></path>
+        </svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCrW987IGdtaSq84cJSxLRDg" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="2" y="5" width="20" height="14" rx="4"></rect>
+          <path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"></path>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@alaconformacion" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M14 3v10.5a2.5 2.5 0 1 1-2-2.45V9.3a4.5 4.5 0 1 0 4 4.47V8.2c.9.66 2 1.05 3 1.05V7.2c-1.3 0-2.4-.7-3-1.7V3z"></path>
+        </svg>
+      </a>
+    </div>
+
+    <small>© <span id="year"></span> Alacon Formación — <a href="https://alaconformacion.es" style="text-decoration:underline;">alaconformacion.es</a></small>
+    <div class="legal-row">
+      <a href="https://alaconformacion.es/aviso-legal" target="_blank" rel="noopener">Aviso legal</a>
+      <a href="https://alaconformacion.es/privacidad-de-datos" target="_blank" rel="noopener">Privacidad</a>
+      <a href="https://alaconformacion.es/politica-de-cookies" target="_blank" rel="noopener">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p>Usamos cookies propias y de análisis para entender cómo se usa esta página. Puedes aceptarlas o rechazarlas.</p>
+  <div class="cookie-actions">
+    <button type="button" class="btn ghost" id="cookieReject">Rechazar</button>
+    <button type="button" class="btn" id="cookieAccept">Aceptar</button>
+  </div>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/34611126264" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+    <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.1 8.1 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.2-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1z"></path>
+  </svg>
+</a>
+
+<!--
+  Google Analytics 4 — sustituye G-XXXXXXXXXX por tu ID de medición real
+  (lo consigues en analytics.google.com → Administrar → Flujos de datos → tu web).
+  Este script solo se activa si el visitante acepta las cookies (ver script.js).
+-->
+<script>
+  window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
