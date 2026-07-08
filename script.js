@@ -47,8 +47,6 @@ function storePrize(prize) {
 
 // Asigna un premio nuevo la primera vez, y reutiliza el mismo en visitas
 // posteriores desde el mismo navegador (evita que recargar la página cambie el premio).
-// NOTA: de momento no se está usando (ver initScratchCard más abajo, que usa
-// pickRandomPrize directamente). Se deja aquí lista para reactivarla más adelante.
 function getOrAssignPrize() {
   const stored = getStoredPrize();
   if (stored) return stored;
@@ -60,7 +58,6 @@ function getOrAssignPrize() {
 
 // Uso administrativo: visita la página como tuweb.com/?reset=1 para forzar
 // que se asigne un premio nuevo, ignorando el que ya estuviera guardado.
-// Solo tiene efecto si getOrAssignPrize() está activa en initScratchCard.
 function maybeResetPrizeFromUrl() {
   try {
     const params = new URLSearchParams(window.location.search);
@@ -224,7 +221,7 @@ function initScratchCard() {
 
   const holder = document.querySelector('.scratch-holder');
 
-  renderPrize(pickRandomPrize());
+  renderPrize(getOrAssignPrize());
   new ScratchCard(canvas, 'img/logo.png', () => {
     launchConfetti(holder);
     trackEvent('prize_revealed');
@@ -454,6 +451,7 @@ function initCookieConsent() {
 
 document.addEventListener('DOMContentLoaded', () => {
   setFooterYear();
+  maybeResetPrizeFromUrl();
   initScratchCard();
   initIntroSplash();
   initScrollProgress();
