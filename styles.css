@@ -171,6 +171,10 @@ img {
   fill: currentColor;
 }
 
+.hero-copy {
+  padding-bottom: 44px;
+}
+
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
