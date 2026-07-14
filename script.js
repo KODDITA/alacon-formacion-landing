@@ -8,10 +8,11 @@ const PRIZES = [
   { amount: 600, fine: 1200 }
 ];
 
-const CANVAS_SIZE = 240;
+const CANVAS_SIZE = 280;
 const REVEAL_THRESHOLD = 0.5; // % del área borrada para dar por revelado el premio
-const BRUSH_RADIUS = 20;
+const BRUSH_RADIUS = 24;
 const PRIZE_STORAGE_KEY = 'alaconPromoPrize';
+const WHATSAPP_NUMBER = '34611126264';
 
 function setFooterYear() {
   const yearEl = document.getElementById('year');
@@ -215,15 +216,79 @@ function launchConfetti(container) {
   }
 }
 
+// ---------- Modal de premio revelado ----------
+// Se muestra a pantalla grande en cuanto se revela el premio del rasca,
+// para que sea imposible pasarlo por alto, y lleva a WhatsApp con un
+// mensaje ya escrito que incluye el premio, para que el alumno no tenga
+// que redactarlo y no se pierda ese dato en la conversación.
+
+function buildWhatsappPrizeUrl(prize) {
+  const message =
+      'Hola, he sido seleccionado/a para el premio de ' + formatEuros(prize.amount) +
+      ' en la promoción de Alacon Formación. Quiero más información para aplicarlo a mi formación.';
+  return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+}
+
+function showPrizeModal(prize) {
+  const modal = document.getElementById('prizeModal');
+  if (!modal) return;
+
+  const amountEl = document.getElementById('prizeModalAmount');
+  const fineEl = document.getElementById('prizeModalFine');
+  const whatsappBtn = document.getElementById('prizeModalWhatsapp');
+
+  if (amountEl) amountEl.textContent = formatEuros(prize.amount);
+  if (fineEl) {
+    fineEl.textContent = 'Válido para formaciones de más de ' + formatEuros(prize.fine);
+  }
+  if (whatsappBtn) whatsappBtn.href = buildWhatsappPrizeUrl(prize);
+
+  modal.classList.add('is-visible');
+  document.body.classList.add('modal-lock');
+}
+
+function hidePrizeModal() {
+  const modal = document.getElementById('prizeModal');
+  if (!modal) return;
+  modal.classList.remove('is-visible');
+  document.body.classList.remove('modal-lock');
+}
+
+function initPrizeModal() {
+  const modal = document.getElementById('prizeModal');
+  if (!modal) return;
+
+  const closeBtn = document.getElementById('prizeModalClose');
+  if (closeBtn) closeBtn.addEventListener('click', hidePrizeModal);
+
+  // Clic fuera de la tarjeta del modal (en el fondo oscuro) también cierra
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) hidePrizeModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
+      hidePrizeModal();
+    }
+  });
+
+  const whatsappBtn = document.getElementById('prizeModalWhatsapp');
+  if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', () => trackEvent('whatsapp_click_prize_modal'));
+  }
+}
+
 function initScratchCard() {
   const canvas = document.getElementById('scratchCanvas');
   if (!canvas) return;
 
   const holder = document.querySelector('.scratch-holder');
+  const prize = getOrAssignPrize();
 
-  renderPrize(getOrAssignPrize());
+  renderPrize(prize);
   new ScratchCard(canvas, 'img/logo.png', () => {
     launchConfetti(holder);
+    showPrizeModal(prize);
     trackEvent('prize_revealed');
   });
 }
@@ -452,6 +517,7 @@ function initCookieConsent() {
 document.addEventListener('DOMContentLoaded', () => {
   setFooterYear();
   maybeResetPrizeFromUrl();
+  initPrizeModal();
   initScratchCard();
   initIntroSplash();
   initScrollProgress();
