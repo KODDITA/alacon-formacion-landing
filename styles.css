@@ -114,6 +114,10 @@ body {
     opacity: 1 !important;
     transform: none !important;
   }
+  #prizeLayer .amt {
+    animation: none !important;
+    background-position: 30% 0;
+  }
 }
 
 h1, h2, h3 {
@@ -488,8 +492,8 @@ body.intro-lock {
 
 .scratch-holder {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
   margin: 0 auto;
 }
 
@@ -506,23 +510,56 @@ body.intro-lock {
 }
 
 #prizeLayer .who {
-  font-size: 12.5px;
-  color: var(--gray);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--blue-deep);
+  max-width: 210px;
 }
 
 #prizeLayer .amt {
+  position: relative;
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 40px;
+  font-size: 78px;
+  line-height: 1;
   color: var(--blue-logo);
-  margin: 4px 0;
+  margin: 2px 0 10px;
+  padding-bottom: 16px;
+  text-shadow: 0 6px 18px rgba(4, 108, 162, 0.28);
+  background: linear-gradient(100deg, var(--blue-logo) 32%, #8fd8ff 46%, var(--gold) 52%, var(--blue-logo) 66%);
+  background-size: 240% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: prize-shine 3.2s ease-in-out infinite;
+}
+
+@keyframes prize-shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -40% 0; }
+}
+
+#prizeLayer .amt::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), #f4c565);
 }
 
 #prizeLayer .fine {
-  font-size: 11px;
+  font-size: 9px;
+  line-height: 1.4;
   color: var(--gray);
-  margin-top: 8px;
-  max-width: 170px;
+  margin-top: 12px;
+  max-width: 150px;
 }
 
 #scratchCanvas {
@@ -563,6 +600,140 @@ body.intro-lock {
   background: transparent;
   color: var(--blue-deep);
   border: 1.5px solid var(--blue-deep);
+}
+
+/* ---------- Modal de premio revelado ---------- */
+/* Se muestra a pantalla grande en cuanto se revela el premio del rasca.
+   Ver showPrizeModal / hidePrizeModal / initPrizeModal en script.js. */
+
+body.modal-lock {
+  overflow: hidden;
+}
+
+.prize-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(20, 38, 58, 0.72);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.prize-modal.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.prize-modal__card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(160deg, var(--white) 0%, #eef4fa 100%);
+  border-radius: 26px;
+  padding: 44px 30px 34px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(9, 27, 46, 0.45);
+  transform: scale(0.85) translateY(18px);
+  transition: transform 0.35s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.prize-modal.is-visible .prize-modal__card {
+  transform: scale(1) translateY(0);
+}
+
+.prize-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(31, 77, 118, 0.08);
+  color: var(--blue-deep);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.prize-modal__close:hover {
+  background: rgba(31, 77, 118, 0.16);
+}
+
+.prize-modal__eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.prize-modal__title {
+  font-size: 24px;
+  line-height: 1.28;
+  margin: 0 auto;
+  max-width: 30ch;
+}
+
+.prize-modal__amount {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 68px;
+  line-height: 1;
+  color: var(--blue-logo);
+  margin: 16px 0 6px;
+  text-shadow: 0 6px 18px rgba(4, 108, 162, 0.28);
+}
+
+.prize-modal__fine {
+  font-size: 12.5px;
+  color: var(--gray);
+  margin: 0 0 20px;
+}
+
+.prize-modal__notice {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--gray-dark);
+  background: #fff7e6;
+  border: 1px solid #f2dfae;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 0 0 6px;
+}
+
+.prize-modal__btn {
+  width: 100%;
+  background: #25d366;
+}
+
+@media (max-width: 520px) {
+  .prize-modal__card {
+    padding: 38px 22px 28px;
+  }
+  .prize-modal__title {
+    font-size: 21px;
+  }
+  .prize-modal__amount {
+    font-size: 54px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prize-modal, .prize-modal__card {
+    transition: none !important;
+  }
 }
 
 /* ---------- Stats ---------- */
@@ -1085,8 +1256,17 @@ footer small {
     font-size: 28px;
   }
   .scratch-holder {
-    width: 210px;
-    height: 210px;
+    width: 240px;
+    height: 240px;
+  }
+
+  #prizeLayer .amt {
+    font-size: 62px;
+  }
+
+  #prizeLayer .who {
+    font-size: 17px;
+    max-width: 190px;
   }
   .stat-grid {
     grid-template-columns: 1fr 1fr;
