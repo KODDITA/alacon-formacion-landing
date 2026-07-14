@@ -82,12 +82,11 @@
 
       <div class="scratch-holder">
         <div id="prizeLayer">
-          <p class="who">Has ganado</p>
           <p class="amt" id="prizeAmount">500 €</p>
-          <p class="who">para tu próxima formación</p>
+          <p class="who">para tu próxima formación con nosotros</p>
           <p class="fine" id="prizeFine">Válido para formaciones de más de 1.000 €</p>
         </div>
-        <canvas id="scratchCanvas" width="240" height="240"></canvas>
+        <canvas id="scratchCanvas" width="280" height="280"></canvas>
       </div>
       <p class="scratch-hint">No hace falta hacer clic, solo pasa el cursor</p>
 
@@ -101,6 +100,21 @@
     <path d="M0 22c80 14 160-18 240-10s150 26 230 14 160-24 240-12 150 22 230 10 40-10 60-6V40H0Z"></path>
   </svg>
 </header>
+
+<!-- ---------- Modal de premio revelado ----------
+     Aparece a pantalla grande en cuanto se revela el premio del rasca.
+     Ver showPrizeModal / hidePrizeModal en script.js. -->
+<div class="prize-modal" id="prizeModal" role="dialog" aria-modal="true" aria-labelledby="prizeModalTitle">
+  <div class="prize-modal__card">
+    <button type="button" class="prize-modal__close" id="prizeModalClose" aria-label="Cerrar">&times;</button>
+    <p class="prize-modal__eyebrow">¡Enhorabuena!</p>
+    <h2 class="prize-modal__title" id="prizeModalTitle">Felicidades, has sido<br>seleccionado/a para</h2>
+    <p class="prize-modal__amount" id="prizeModalAmount">500 €</p>
+    <p class="prize-modal__fine" id="prizeModalFine">Válido para formaciones de más de 1.000 €</p>
+    <p class="prize-modal__notice">Es muy importante que nos indiques que has sido seleccionado/a para este premio, para poder aplicarte el descuento en tu formación.</p>
+    <a class="btn prize-modal__btn" id="prizeModalWhatsapp" href="#" target="_blank" rel="noopener">Solicitar más información</a>
+  </div>
+</div>
 
 <section class="steps reveal">
   <div class="wrap">
