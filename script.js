@@ -254,27 +254,83 @@ function hidePrizeModal() {
   document.body.classList.remove('modal-lock');
 }
 
+// ---------- Doble check al cerrar el modal de premio ----------
+// En lugar de cerrar el modal directamente, se muestra un segundo aviso
+// pidiendo confirmación, para asegurarnos de que el alumno no descarta
+// el descuento sin querer.
+
+function showExitConfirm() {
+  const confirmModal = document.getElementById('prizeExitConfirm');
+  if (confirmModal) confirmModal.classList.add('is-visible');
+}
+
+function hideExitConfirm() {
+  const confirmModal = document.getElementById('prizeExitConfirm');
+  if (confirmModal) confirmModal.classList.remove('is-visible');
+}
+
+function requestClosePrizeModal() {
+  const modal = document.getElementById('prizeModal');
+  if (!modal || !modal.classList.contains('is-visible')) return;
+  showExitConfirm();
+}
+
 function initPrizeModal() {
   const modal = document.getElementById('prizeModal');
   if (!modal) return;
 
   const closeBtn = document.getElementById('prizeModalClose');
-  if (closeBtn) closeBtn.addEventListener('click', hidePrizeModal);
+  if (closeBtn) closeBtn.addEventListener('click', requestClosePrizeModal);
 
-  // Clic fuera de la tarjeta del modal (en el fondo oscuro) también cierra
+  // Clic fuera de la tarjeta del modal (en el fondo oscuro) pide confirmación
   modal.addEventListener('click', (event) => {
-    if (event.target === modal) hidePrizeModal();
+    if (event.target === modal) requestClosePrizeModal();
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
-      hidePrizeModal();
+    if (event.key !== 'Escape') return;
+
+    const exitConfirm = document.getElementById('prizeExitConfirm');
+    if (exitConfirm && exitConfirm.classList.contains('is-visible')) {
+      // Escape en el doble check equivale a "no, quiero mi descuento"
+      hideExitConfirm();
+      return;
+    }
+    if (modal.classList.contains('is-visible')) {
+      requestClosePrizeModal();
     }
   });
 
   const whatsappBtn = document.getElementById('prizeModalWhatsapp');
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', () => trackEvent('whatsapp_click_prize_modal'));
+  }
+
+  const exitConfirm = document.getElementById('prizeExitConfirm');
+  const exitConfirmYes = document.getElementById('exitConfirmYes');
+  const exitConfirmNo = document.getElementById('exitConfirmNo');
+
+  // Clic en el fondo del propio diálogo de confirmación: se interpreta
+  // como "no, quiero mi descuento" (opción más segura por defecto).
+  if (exitConfirm) {
+    exitConfirm.addEventListener('click', (event) => {
+      if (event.target === exitConfirm) hideExitConfirm();
+    });
+  }
+
+  if (exitConfirmYes) {
+    exitConfirmYes.addEventListener('click', () => {
+      hideExitConfirm();
+      hidePrizeModal();
+      trackEvent('prize_modal_dismiss_confirmed');
+    });
+  }
+
+  if (exitConfirmNo) {
+    exitConfirmNo.addEventListener('click', () => {
+      hideExitConfirm();
+      trackEvent('prize_modal_dismiss_cancelled');
+    });
   }
 }
 
