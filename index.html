@@ -112,7 +112,24 @@
     <p class="prize-modal__amount" id="prizeModalAmount">500 €</p>
     <p class="prize-modal__fine" id="prizeModalFine">Válido para formaciones de más de 1.000 €</p>
     <p class="prize-modal__notice">Es muy importante que nos indiques que has sido seleccionado/a para este premio, para poder aplicarte el descuento en tu formación.</p>
+    <p class="prize-modal__referral">¿No te interesa este descuento ahora mismo? Coméntaselo a un amigo o familiar que quiera formarse: si te menciona como referido, él también conseguirá su descuento.</p>
     <a class="btn prize-modal__btn" id="prizeModalWhatsapp" href="#" target="_blank" rel="noopener">Solicitar más información</a>
+  </div>
+</div>
+
+<!-- ---------- Doble check al cerrar el modal de premio ----------
+     Antes de cerrar definitivamente el modal de premio (aspa, clic fuera
+     o Escape), se pide confirmación para evitar que se cierre sin querer
+     y se pierda el descuento. Ver requestClosePrizeModal en script.js. -->
+<div class="prize-modal prize-exit-confirm" id="prizeExitConfirm" role="dialog" aria-modal="true" aria-labelledby="exitConfirmTitle">
+  <div class="prize-modal__card">
+    <p class="prize-modal__eyebrow">Espera</p>
+    <h2 class="prize-modal__title" id="exitConfirmTitle">¿Seguro que no quieres tu descuento?</h2>
+    <p class="prize-modal__fine" style="margin-top:10px;">Puedes solicitar información sin compromiso, o pasárselo a alguien que sí lo quiera aprovechar.</p>
+    <div class="prize-exit-confirm__actions">
+      <button type="button" class="btn" id="exitConfirmNo">No, quiero mi descuento</button>
+      <button type="button" class="btn ghost" id="exitConfirmYes">Sí, estoy seguro</button>
+    </div>
   </div>
 </div>
 
